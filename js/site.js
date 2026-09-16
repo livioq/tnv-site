@@ -10,21 +10,21 @@ const pages = [
 
 const visuals = {
   "index.html": ["assets/ai-operations-map.png", "Processi, dati, persone, territorio"],
-  "startup.html": ["assets/startup-map.svg", "Consulenza, capitale, rete"],
-  "aziende.html": ["assets/open-innovation-map.svg", "Persone, processo, territorio"],
-  "coworking.html": ["assets/ai-operations-map.png", "Viale La Plaia 15"],
-  "open-innovation.html": ["assets/open-innovation-map.svg", "Vuoto, matching, ingresso"],
+  "startup.html": ["assets/sardinia-collage.jpg", "Consulenza, capitale, rete"],
+  "aziende.html": ["assets/poc-collage.jpg", "Persone, processo, territorio"],
+  "coworking.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
+  "open-innovation.html": ["assets/poc-collage.jpg", "Vuoto, matching, ingresso"],
   "consulenza-ai.html": ["assets/ai-operations-map.png", "Dal lavoro esistente"],
-  "eventi.html": ["assets/onshoring-map.svg", "Community e location"],
+  "eventi.html": ["assets/sardinia-collage.jpg", "Community e location"],
   "blog.html": ["assets/startup-map.svg", "Scritti di Livio Q"],
   "academy.html": ["assets/startup-map.svg", "Mestiere in uscita"],
-  "agency.html": ["assets/open-innovation-map.svg", "Candidati e processo"],
-  "onshoring.html": ["assets/onshoring-map.svg", "Sede, visto, casa, fondi"],
-  "connessioni.html": ["assets/open-innovation-map.svg", "Rete della community"],
-  "chi-siamo.html": ["assets/ai-operations-map.png", "Dal 2009 a Cagliari"],
-  "contatti.html": ["assets/onshoring-map.svg", "Viale La Plaia 15"],
+  "agency.html": ["assets/poc-collage.jpg", "Candidati e processo"],
+  "onshoring.html": ["assets/sardinia-collage.jpg", "Sede, visto, casa, fondi"],
+  "connessioni.html": ["assets/poc-collage.jpg", "Rete della community"],
+  "chi-siamo.html": ["assets/sardinia-collage.jpg", "Dal 2009 a Cagliari"],
+  "contatti.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
   "incubatore.html": ["assets/startup-map.svg", "Incubatore certificato"],
-  "techtalents.html": ["assets/open-innovation-map.svg", "Matching tech"],
+  "techtalents.html": ["assets/poc-collage.jpg", "Matching tech"],
 };
 
 function currentFile() {
@@ -36,12 +36,19 @@ function mountVisual() {
   const file = currentFile();
   const spec = visuals[file];
   if (!spec) return;
-  if (document.querySelector(".visual-frame")) return;
+  const [src, cap] = spec;
+  const existing = document.querySelector(".visual-frame img");
+  if (existing) {
+    existing.src = src;
+    existing.alt = cap;
+    const capEl = existing.parentElement.querySelector("figcaption");
+    if (capEl) capEl.textContent = cap;
+    return;
+  }
   const hero = document.querySelector("section.hero .wrap");
   if (!hero) return;
   if (hero.querySelector(".signal-panel")) return;
   hero.classList.add("hero-grid");
-  const [src, cap] = spec;
   const fig = document.createElement("figure");
   fig.className = "visual-frame";
   fig.innerHTML = `<img src="${src}" alt="${cap}"><figcaption>${cap}</figcaption>`;

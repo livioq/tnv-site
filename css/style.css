@@ -225,6 +225,7 @@ section { padding: 72px 0; }
 }
 .card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 46%, var(--rule)); }
 .card h3 { font-size: 1.35rem; margin-bottom: 10px; }
+.card-logo { height: 28px; width: auto; max-width: 100%; object-fit: contain; margin-bottom: 10px; }
 .card p, .prose p { margin-bottom: 12px; color: var(--ink-soft); }
 .card a.more { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
 .card-tag { margin-top: 10px; font-size: 0.78rem; color: var(--muted); }

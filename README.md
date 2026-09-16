@@ -1,2 +1,5 @@
-# tnv-site
-The Net Value website rebuild — static Italian prototype
+# The Net Value site rebuild (IT prototype)
+
+Live (after Pages is on): https://livioq.github.io/tnv-site/
+
+Repo: https://github.com/livioq/tnv-site

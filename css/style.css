@@ -268,11 +268,45 @@ section { padding: 72px 0; }
 }
 .person p { color: var(--ink-soft); font-size: 0.92rem; }
 
+.media-slot {
+  border: 1px dashed var(--rule);
+  background: var(--paper-2);
+  min-height: 200px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.media-slot code {
+  display: block;
+  margin-top: 8px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.gallery .media-slot,
+.gallery img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+}
+
 .dark { background: var(--ink); color: var(--paper); }
 .dark .section-lead, .dark .card p, .dark p { color: #c9c3b6; }
 .dark .card { background: #1a1f1c; border-color: #2c3330; color: var(--paper); }
 .dark .btn { background: var(--paper); color: var(--ink); }
 .dark .btn:hover { background: var(--accent); color: var(--paper); }
+.dark .media-slot { background: #1a1f1c; border-color: #2c3330; color: #c9c3b6; }
 
 .list { list-style: none; }
 .list li { padding: 12px 0; border-bottom: 1px solid var(--rule); }

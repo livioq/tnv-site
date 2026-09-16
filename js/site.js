@@ -58,6 +58,30 @@ function mountVisual() {
   hero.appendChild(fig);
 }
 
+function mountPhotos() {
+  document.querySelectorAll("[data-photo]").forEach((el) => {
+    const src = el.getAttribute("data-photo");
+    const alt = el.getAttribute("data-alt") || "";
+    const img = new Image();
+    img.onload = () => {
+      el.innerHTML = "";
+      img.alt = alt;
+      el.appendChild(img);
+    };
+    img.src = src;
+  });
+  document.querySelectorAll("[data-fill]").forEach((el) => {
+    const src = el.getAttribute("data-fill");
+    const img = new Image();
+    img.onload = () => {
+      el.innerHTML = "";
+      img.alt = el.getAttribute("data-alt") || "";
+      el.appendChild(img);
+    };
+    img.src = src;
+  });
+}
+
 function mount() {
   const file = currentFile();
   const header = document.getElementById("site-header");
@@ -67,8 +91,9 @@ function mount() {
     header.querySelector(".menu-toggle").addEventListener("click", () => header.querySelector("nav.primary").classList.toggle("open"));
   }
   if (footer) {
-    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="connessioni.html">Connessioni</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
+    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="agency.html">Agency</a><a href="academy.html">Academy</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a><a href="chi-siamo.html">Chi siamo</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
   }
   mountVisual();
+  mountPhotos();
 }
 document.addEventListener("DOMContentLoaded", mount);

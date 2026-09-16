@@ -9,12 +9,12 @@ const pages = [
 ];
 
 const visuals = {
-  "index.html": ["assets/ai-operations-map.png", "Processi, dati, persone, territorio"],
+  "index.html": ["assets/ai-operations-map.jpg", "Processi, dati, persone, territorio"],
   "startup.html": ["assets/sardinia-collage.jpg", "Consulenza, capitale, rete"],
   "aziende.html": ["assets/poc-collage.jpg", "Persone, processo, territorio"],
   "coworking.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
   "open-innovation.html": ["assets/poc-collage.jpg", "Vuoto, matching, ingresso"],
-  "consulenza-ai.html": ["assets/ai-operations-map.png", "Dal lavoro esistente"],
+  "consulenza-ai.html": ["assets/ai-operations-map.jpg", "Dal lavoro esistente"],
   "eventi.html": ["assets/sardinia-collage.jpg", "Community e location"],
   "blog.html": ["assets/startup-map.svg", "Scritti di Livio Q"],
   "academy.html": ["assets/startup-map.svg", "Mestiere in uscita"],

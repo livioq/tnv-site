@@ -3,11 +3,9 @@ const pages = [
   ["aziende.html", "Aziende"],
   ["coworking.html", "Coworking"],
   ["open-innovation.html", "Open innovation"],
-  ["onshoring.html", "Onshoring"],
-  ["academy.html", "Academy"],
+  ["consulenza-ai.html", "Consulenza AI"],
   ["eventi.html", "Eventi"],
   ["blog.html", "Blog"],
-  ["chi-siamo.html", "Chi siamo"],
 ];
 function currentFile() {
   const p = location.pathname.split("/").pop();
@@ -22,7 +20,7 @@ function mount() {
     header.querySelector(".menu-toggle").addEventListener("click", () => header.querySelector("nav.primary").classList.toggle("open"));
   }
   if (footer) {
-    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo" href="index.html">The Net Value<span>.</span></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Per startup</a><a href="aziende.html">Per aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="consulenza-ai.html">Consulenza AI</a><a href="agency.html">Agency</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
+    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo" href="index.html">The Net Value<span>.</span></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="connessioni.html">Connessioni</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
   }
 }
 document.addEventListener("DOMContentLoaded", mount);

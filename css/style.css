@@ -232,6 +232,42 @@ section { padding: 72px 0; }
 .card-tag a { color: var(--accent-2); text-decoration: none; }
 .card-tag a:hover { text-decoration: underline; }
 
+.people {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+  gap: 18px;
+}
+.person {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 18px;
+}
+.person-photo {
+  aspect-ratio: 1;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  margin-bottom: 14px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font);
+  font-size: 1.5rem;
+  color: var(--muted);
+}
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.person h3 { font-size: 1.2rem; margin-bottom: 0; }
+.person-role {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 6px 0 10px;
+}
+.person p { color: var(--ink-soft); font-size: 0.92rem; }
+
 .dark { background: var(--ink); color: var(--paper); }
 .dark .section-lead, .dark .card p, .dark p { color: #c9c3b6; }
 .dark .card { background: #1a1f1c; border-color: #2c3330; color: var(--paper); }

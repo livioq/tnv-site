@@ -9,7 +9,7 @@ const pages = [
 ];
 
 const visuals = {
-  "index.html": ["assets/ai-operations-map.jpg", "Processi, dati, persone, territorio"],
+  "index.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15, Cagliari"],
   "startup.html": ["assets/sardinia-collage.jpg", "Consulenza, capitale, rete"],
   "aziende.html": ["assets/poc-collage.jpg", "Persone, processo, territorio"],
   "coworking.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],

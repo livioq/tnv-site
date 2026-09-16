@@ -36,7 +36,7 @@ a { color: inherit; }
 }
 .header-inner {
   display: flex; align-items: center; justify-content: space-between;
-  min-height: 68px; gap: 24px;
+  min-height: 72px; gap: 24px;
 }
 .logo {
   font-family: var(--font);
@@ -44,6 +44,19 @@ a { color: inherit; }
   letter-spacing: -0.03em;
   font-size: 1.15rem;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.logo img {
+  height: 36px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+.footer-logo img {
+  height: 32px;
+  max-width: 180px;
 }
 .logo span { color: var(--accent); }
 nav.primary { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
@@ -258,7 +271,7 @@ label { font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; c
   nav.primary { display: none; }
   nav.primary.open {
     display: flex; flex-direction: column; align-items: flex-start;
-    position: absolute; left: 0; right: 0; top: 68px;
+    position: absolute; left: 0; right: 0; top: 72px;
     background: var(--paper); padding: 16px 20px 24px;
     border-bottom: 1px solid var(--rule);
   }
@@ -267,4 +280,5 @@ label { font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; c
   .hero::after { width: 70vw; height: 70vw; opacity: 0.45; }
   .signal-panel { min-height: auto; }
   .stat { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .logo img { height: 30px; max-width: 170px; }
 }

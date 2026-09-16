@@ -10,21 +10,21 @@ const pages = [
 
 const visuals = {
   "index.html": ["assets/ai-operations-map.png", "Processi, dati, persone, territorio"],
-  "startup.html": ["assets/sardinia-collage.jpg", "Consulenza, capitale, rete"],
-  "aziende.html": ["assets/poc-collage.jpg", "Persone, processo, territorio"],
-  "coworking.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
-  "open-innovation.html": ["assets/poc-collage.jpg", "Vuoto, matching, ingresso"],
+  "startup.html": ["assets/startup-map.svg", "Consulenza, capitale, rete"],
+  "aziende.html": ["assets/open-innovation-map.svg", "Persone, processo, territorio"],
+  "coworking.html": ["assets/ai-operations-map.png", "Viale La Plaia 15"],
+  "open-innovation.html": ["assets/open-innovation-map.svg", "Vuoto, matching, ingresso"],
   "consulenza-ai.html": ["assets/ai-operations-map.png", "Dal lavoro esistente"],
-  "eventi.html": ["assets/sardinia-collage.jpg", "Community e location"],
+  "eventi.html": ["assets/onshoring-map.svg", "Community e location"],
   "blog.html": ["assets/startup-map.svg", "Scritti di Livio Q"],
   "academy.html": ["assets/startup-map.svg", "Mestiere in uscita"],
-  "agency.html": ["assets/poc-collage.jpg", "Candidati e processo"],
-  "onshoring.html": ["assets/sardinia-collage.jpg", "Sede, visto, casa, fondi"],
-  "connessioni.html": ["assets/poc-collage.jpg", "Rete della community"],
-  "chi-siamo.html": ["assets/sardinia-collage.jpg", "Dal 2009 a Cagliari"],
-  "contatti.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
+  "agency.html": ["assets/open-innovation-map.svg", "Candidati e processo"],
+  "onshoring.html": ["assets/onshoring-map.svg", "Sede, visto, casa, fondi"],
+  "connessioni.html": ["assets/open-innovation-map.svg", "Rete della community"],
+  "chi-siamo.html": ["assets/ai-operations-map.png", "Dal 2009 a Cagliari"],
+  "contatti.html": ["assets/onshoring-map.svg", "Viale La Plaia 15"],
   "incubatore.html": ["assets/startup-map.svg", "Incubatore certificato"],
-  "techtalents.html": ["assets/poc-collage.jpg", "Matching tech"],
+  "techtalents.html": ["assets/open-innovation-map.svg", "Matching tech"],
 };
 
 function currentFile() {
@@ -60,11 +60,11 @@ function mount() {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
   if (header) {
-    header.innerHTML = `<div class="wrap header-inner"><a class="logo" href="index.html">The Net Value<span>.</span></a><button class="menu-toggle" type="button" aria-label="Menu">Menu</button><nav class="primary">${pages.map(([href,label])=>`<a href="${href}" ${href===file?'aria-current="page"':''}>${label}</a>`).join("")}<a class="btn" href="contatti.html">Parliamone</a></nav></div>`;
+    header.innerHTML = `<div class="wrap header-inner"><a class="logo" href="index.html"><img src="assets/LogoTNV_2023.png" alt="The Net Value"></a><button class="menu-toggle" type="button" aria-label="Menu">Menu</button><nav class="primary">${pages.map(([href,label])=>`<a href="${href}" ${href===file?'aria-current="page"':''}>${label}</a>`).join("")}<a class="btn" href="contatti.html">Parliamone</a></nav></div>`;
     header.querySelector(".menu-toggle").addEventListener("click", () => header.querySelector("nav.primary").classList.toggle("open"));
   }
   if (footer) {
-    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo" href="index.html">The Net Value<span>.</span></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="connessioni.html">Connessioni</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
+    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_light_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, Cagliari</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="connessioni.html">Connessioni</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a></div></div><div class="wrap">© ${new Date().getFullYear()} The Net Value</div>`;
   }
   mountVisual();
 }

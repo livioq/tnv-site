@@ -48,6 +48,9 @@ function mountVisual() {
   const hero = document.querySelector("section.hero .wrap");
   if (!hero) return;
   if (hero.querySelector(".signal-panel")) return;
+  const copy = document.createElement("div");
+  while (hero.firstChild) copy.appendChild(hero.firstChild);
+  hero.appendChild(copy);
   hero.classList.add("hero-grid");
   const fig = document.createElement("figure");
   fig.className = "visual-frame";

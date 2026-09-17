@@ -181,6 +181,8 @@ section { padding: 72px 0; }
 .dark { background: var(--ink); color: var(--paper); }
 .dark .section-lead, .dark .card p, .dark p { color: #c9c3b6; }
 .dark .card { background: #1a1f1c; border-color: #2c3330; color: var(--paper); }
+.dark .card blockquote { color: #c9c3b6; }
+.dark .card blockquote cite { color: #a8ada9; }
 .dark .btn { background: var(--paper); color: var(--ink); }
 
 .list { list-style: none; }

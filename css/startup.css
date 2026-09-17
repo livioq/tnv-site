@@ -1,4 +1,3 @@
-.startup-page .startup-hero { padding-block: clamp(56px, 8vw, 104px); }
 .startup-page .text-link { align-self: center; padding: 10px 4px; color: var(--ink-soft); text-underline-offset: 4px; }
 
 .startup-proof { border: 1px solid var(--rule); background: var(--white); padding: 22px 24px 10px; }
@@ -9,7 +8,6 @@
 .proof-number span { color: var(--muted); font-size: .9rem; }
 
 .startup-path { background: var(--white); }
-.startup-cta { padding-top: 0; }
 
 @media (max-width: 520px) {
   .proof-number { grid-template-columns: 1fr; gap: 5px; }

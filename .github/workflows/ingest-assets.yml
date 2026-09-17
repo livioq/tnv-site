@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Decode or fetch incoming files
         run: |
-          set -euo pipefail
+          set -uo pipefail
           shopt -s globstar nullglob
           count=0
           for f in incoming/**; do
@@ -31,17 +31,24 @@ jobs:
               dest="assets/${base%.url}"
               url="$(tr -d '\r' < "$f" | sed '/^[[:space:]]*$/d; /^#/d' | head -1)"
               mkdir -p "$(dirname "$dest")"
-              curl -fsSL "$url" -o "$dest"
-              rm -f "$f"
-              echo "fetched $url -> $dest"
-              count=$((count+1))
+              if curl -fsSL "$url" -o "$dest"; then
+                rm -f "$f"
+                echo "fetched $url -> $dest"
+                count=$((count+1))
+              else
+                echo "WARN fetch failed $url"
+              fi
             elif [[ "$f" == *.b64 ]]; then
               dest="assets/${base%.b64}"
               mkdir -p "$(dirname "$dest")"
-              base64 -d "$f" > "$dest"
-              rm -f "$f"
-              echo "decoded $f -> $dest"
-              count=$((count+1))
+              if python3 -c "import base64,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=pathlib.Path(sys.argv[2]); raw=''.join(p.read_text().split()); pad=(-len(raw))%4; raw+= '='*pad; d.write_bytes(base64.b64decode(raw))" "$f" "$dest"; then
+                rm -f "$f"
+                echo "decoded $f -> $dest"
+                count=$((count+1))
+              else
+                echo "WARN decode failed $f"
+                rm -f "$dest"
+              fi
             else
               echo "skip $f (use .url or .b64)"
             fi

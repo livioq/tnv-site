@@ -79,6 +79,17 @@ Use different structures according to the content: editorial split layouts, numb
 
 Maintain a consistent content width, spacing scale, type scale, border treatment and button language across pages. Reuse components when the underlying information pattern is the same, not merely to make every page look identical.
 
+### Dark sections
+
+`.dark` is reserved for two jobs, never for decoration:
+
+1. Concrete proof — a case study, named examples, or results (e.g. Bloomlabs/Paperlit on the startup page, BIOS/C-Lab on open innovation, the Samudra example on onshoring).
+2. A genuine two-sided differentiation — what we don't do vs what we look for, presented as a real comparison, not just a CTA (e.g. "Cosa non vendiamo / Cosa cerchiamo" on aziende and connessioni).
+
+Never wrap a bare CTA in `.dark` just to break up the rhythm — a closing prompt with no proof or comparison content stays on the default (light) background. A page needs at most one `.dark` section; if nothing on the page is proof or a real comparison, the page has no dark section at all, and that's fine (contatti, blog).
+
+Every page ends with an explicit next step — either a light closing section with the primary CTA, or, when the dark section itself is the differentiation-with-CTA closer (aziende, connessioni), that section is the last one on the page. A page should never end on a section with no CTA at all.
+
 ## 7. Typography
 
 The current serif/sans pairing is part of TNV's visual identity and should be used deliberately.

@@ -42,12 +42,13 @@ function teamCandidates(src) {
   const under = raw.replace(/-/g, "_");
   const hyphen = raw.replace(/_/g, "-");
   return [
-    `assets/team/${under}.jpeg`,
-    `assets/team/${under}.jpg`,
-    `assets/team/${under}.png`,
-    `assets/team/${hyphen}.jpeg`,
-    `assets/team/${hyphen}.jpg`,
+    src,
     `assets/team/${hyphen}.png`,
+    `assets/team/${under}.png`,
+    `assets/team/${hyphen}.jpg`,
+    `assets/team/${hyphen}.jpeg`,
+    `assets/team/${under}.jpg`,
+    `assets/team/${under}.jpeg`,
   ];
 }
 

@@ -56,6 +56,25 @@ function teamCandidates(src) {
   ];
 }
 
+function ensureFavicon() {
+  const links = [
+    ["icon", "image/x-icon", "assets/favicon/favicon.ico", null],
+    ["icon", "image/png", "assets/favicon/favicon-32.png", "32x32"],
+    ["icon", "image/png", "assets/favicon/favicon-16.png", "16x16"],
+    ["apple-touch-icon", null, "assets/favicon/apple-touch-icon.png", "180x180"],
+    ["icon", "image/png", "assets/favicon/icon-192.png", "192x192"],
+  ];
+  links.forEach(([rel, type, href, sizes]) => {
+    if ([...document.querySelectorAll(`link[rel='${rel}']`)].some((n) => n.getAttribute("href") === href)) return;
+    const el = document.createElement("link");
+    el.rel = rel;
+    if (type) el.type = type;
+    if (sizes) el.sizes = sizes;
+    el.href = href;
+    document.head.appendChild(el);
+  });
+}
+
 function mountVisual() {
   const file = currentFile();
   const spec = visuals[file];
@@ -107,6 +126,7 @@ function mountPhotos() {
 }
 
 function mount() {
+  ensureFavicon();
   const file = currentFile();
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");

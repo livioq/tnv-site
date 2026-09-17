@@ -27,12 +27,12 @@ const visuals = {
   "techtalents.html": ["assets/poc-collage.jpg", "Matching tech"],
 };
 
-const teamFiles = {
-  "mario-mariani": "assets/team/mario_mariani.png",
-  "livio-quintavalle": "assets/team/livio_quintavalle.png",
-  "benedetta-mariani": "assets/team/benedetta_mariani.png",
-  "giulia-onano": "assets/team/giulia_onano.png",
-  "maria-adelaide-lai": "assets/team/maria_adelaide_lai.png",
+const teamSlugs = {
+  "mario-mariani": "mario_mariani",
+  "livio-quintavalle": "livio_quintavalle",
+  "benedetta-mariani": "benedetta_mariani",
+  "giulia-onano": "giulia_onano",
+  "maria-adelaide-lai": "maria_adelaide_lai",
 };
 
 function currentFile() {
@@ -40,10 +40,20 @@ function currentFile() {
   return p === "" ? "index.html" : p;
 }
 
-function resolvePhoto(src) {
-  if (!src) return src;
-  const key = src.replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "").replace(/_/g, "-");
-  return teamFiles[key] || src;
+function teamKey(src) {
+  return (src || "").replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "").replace(/_/g, "-");
+}
+
+function teamCandidates(src) {
+  const key = teamKey(src);
+  const slug = teamSlugs[key];
+  if (!slug) return [src];
+  return [
+    `assets/team/${slug}.jpeg`,
+    `assets/team/${slug}.jpg`,
+    `assets/team/${slug}.png`,
+    `https://www.thenetvalue.com/wp-content/uploads/2023/09/${slug}.jpeg`,
+  ];
 }
 
 function mountVisual() {
@@ -72,22 +82,27 @@ function mountVisual() {
   hero.appendChild(fig);
 }
 
-function loadInto(el, src, alt) {
-  const img = new Image();
-  img.onload = () => {
-    el.innerHTML = "";
-    img.alt = alt || "";
-    el.appendChild(img);
+function loadFirst(el, urls, alt) {
+  const tryNext = (i) => {
+    if (i >= urls.length) return;
+    const img = new Image();
+    img.onload = () => {
+      el.innerHTML = "";
+      img.alt = alt || "";
+      el.appendChild(img);
+    };
+    img.onerror = () => tryNext(i + 1);
+    img.src = urls[i];
   };
-  img.src = src;
+  tryNext(0);
 }
 
 function mountPhotos() {
   document.querySelectorAll("[data-photo]").forEach((el) => {
-    loadInto(el, resolvePhoto(el.getAttribute("data-photo")), el.getAttribute("data-alt"));
+    loadFirst(el, teamCandidates(el.getAttribute("data-photo")), el.getAttribute("data-alt"));
   });
   document.querySelectorAll("[data-fill]").forEach((el) => {
-    loadInto(el, el.getAttribute("data-fill"), el.getAttribute("data-alt"));
+    loadFirst(el, [el.getAttribute("data-fill")], el.getAttribute("data-alt"));
   });
 }
 

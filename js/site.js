@@ -23,16 +23,6 @@ const visuals = {
   "connessioni.html": ["assets/poc-collage.jpg", "Rete della community"],
   "chi-siamo.html": ["assets/sardinia-collage.jpg", "Dal 2009 a Cagliari"],
   "contatti.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
-  "incubatore.html": ["assets/startup-map.svg", "Incubatore certificato"],
-  "techtalents.html": ["assets/poc-collage.jpg", "Matching tech"],
-};
-
-const teamSlugs = {
-  "mario-mariani": "mario_mariani",
-  "livio-quintavalle": "livio_quintavalle",
-  "benedetta-mariani": "benedetta_mariani",
-  "giulia-onano": "giulia_onano",
-  "maria-adelaide-lai": "maria_adelaide_lai",
 };
 
 function currentFile() {
@@ -40,19 +30,17 @@ function currentFile() {
   return p === "" ? "index.html" : p;
 }
 
-function teamKey(src) {
-  return (src || "").replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "").replace(/_/g, "-");
-}
-
 function teamCandidates(src) {
-  const key = teamKey(src);
-  const slug = teamSlugs[key];
-  if (!slug) return [src];
+  const raw = (src || "").replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "");
+  const under = raw.replace(/-/g, "_");
+  const hyphen = raw.replace(/_/g, "-");
   return [
-    `assets/team/${slug}.jpeg`,
-    `assets/team/${slug}.jpg`,
-    `assets/team/${slug}.png`,
-    `https://www.thenetvalue.com/wp-content/uploads/2023/09/${slug}.jpeg`,
+    `assets/team/${under}.jpeg`,
+    `assets/team/${under}.jpg`,
+    `assets/team/${under}.png`,
+    `assets/team/${hyphen}.jpeg`,
+    `assets/team/${hyphen}.jpg`,
+    `assets/team/${hyphen}.png`,
   ];
 }
 
@@ -62,7 +50,6 @@ function ensureFavicon() {
     ["icon", "image/png", "assets/favicon/favicon-32.png", "32x32"],
     ["icon", "image/png", "assets/favicon/favicon-16.png", "16x16"],
     ["apple-touch-icon", null, "assets/favicon/apple-touch-icon.png", "180x180"],
-    ["icon", "image/png", "assets/favicon/icon-192.png", "192x192"],
   ];
   links.forEach(([rel, type, href, sizes]) => {
     if ([...document.querySelectorAll(`link[rel='${rel}']`)].some((n) => n.getAttribute("href") === href)) return;
@@ -76,8 +63,7 @@ function ensureFavicon() {
 }
 
 function mountVisual() {
-  const file = currentFile();
-  const spec = visuals[file];
+  const spec = visuals[currentFile()];
   if (!spec) return;
   const [src, cap] = spec;
   const existing = document.querySelector(".visual-frame img");
@@ -86,19 +72,7 @@ function mountVisual() {
     existing.alt = cap;
     const capEl = existing.parentElement.querySelector("figcaption");
     if (capEl) capEl.textContent = cap;
-    return;
   }
-  const hero = document.querySelector("section.hero .wrap");
-  if (!hero) return;
-  if (hero.querySelector(".signal-panel")) return;
-  const copy = document.createElement("div");
-  while (hero.firstChild) copy.appendChild(hero.firstChild);
-  hero.appendChild(copy);
-  hero.classList.add("hero-grid");
-  const fig = document.createElement("figure");
-  fig.className = "visual-frame";
-  fig.innerHTML = `<img src="${src}" alt="${cap}"><figcaption>${cap}</figcaption>`;
-  hero.appendChild(fig);
 }
 
 function loadFirst(el, urls, alt) {
@@ -111,7 +85,7 @@ function loadFirst(el, urls, alt) {
       el.appendChild(img);
     };
     img.onerror = () => tryNext(i + 1);
-    img.src = urls[i];
+    img.src = urls[i] + "?v=portraits2";
   };
   tryNext(0);
 }
@@ -119,9 +93,6 @@ function loadFirst(el, urls, alt) {
 function mountPhotos() {
   document.querySelectorAll("[data-photo]").forEach((el) => {
     loadFirst(el, teamCandidates(el.getAttribute("data-photo")), el.getAttribute("data-alt"));
-  });
-  document.querySelectorAll("[data-fill]").forEach((el) => {
-    loadFirst(el, [el.getAttribute("data-fill")], el.getAttribute("data-alt"));
   });
 }
 

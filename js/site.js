@@ -27,9 +27,23 @@ const visuals = {
   "techtalents.html": ["assets/poc-collage.jpg", "Matching tech"],
 };
 
+const teamFiles = {
+  "mario-mariani": "assets/team/mario_mariani.png",
+  "livio-quintavalle": "assets/team/livio_quintavalle.png",
+  "benedetta-mariani": "assets/team/benedetta_mariani.png",
+  "giulia-onano": "assets/team/giulia_onano.png",
+  "maria-adelaide-lai": "assets/team/maria_adelaide_lai.png",
+};
+
 function currentFile() {
   const p = location.pathname.split("/").pop();
   return p === "" ? "index.html" : p;
+}
+
+function resolvePhoto(src) {
+  if (!src) return src;
+  const key = src.replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "").replace(/_/g, "-");
+  return teamFiles[key] || src;
 }
 
 function mountVisual() {
@@ -58,27 +72,22 @@ function mountVisual() {
   hero.appendChild(fig);
 }
 
+function loadInto(el, src, alt) {
+  const img = new Image();
+  img.onload = () => {
+    el.innerHTML = "";
+    img.alt = alt || "";
+    el.appendChild(img);
+  };
+  img.src = src;
+}
+
 function mountPhotos() {
   document.querySelectorAll("[data-photo]").forEach((el) => {
-    const src = el.getAttribute("data-photo");
-    const alt = el.getAttribute("data-alt") || "";
-    const img = new Image();
-    img.onload = () => {
-      el.innerHTML = "";
-      img.alt = alt;
-      el.appendChild(img);
-    };
-    img.src = src;
+    loadInto(el, resolvePhoto(el.getAttribute("data-photo")), el.getAttribute("data-alt"));
   });
   document.querySelectorAll("[data-fill]").forEach((el) => {
-    const src = el.getAttribute("data-fill");
-    const img = new Image();
-    img.onload = () => {
-      el.innerHTML = "";
-      img.alt = el.getAttribute("data-alt") || "";
-      el.appendChild(img);
-    };
-    img.src = src;
+    loadInto(el, el.getAttribute("data-fill"), el.getAttribute("data-alt"));
   });
 }
 

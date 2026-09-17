@@ -6,15 +6,29 @@ Photos go in `assets/` (and `assets/team/`) with the exact names below. If the f
 
 ---
 
+## 0. Received this morning
+
+Livio portrait is in the chat (black background, square). I cannot push JPG/PNG through the GitHub text API. Please upload the file yourself:
+
+GitHub → `livioq/tnv-site` → Add file → Upload → save as:
+
+`assets/team/livio_quintavalle.jpeg`
+
+(or `.jpg` / `.png` — the site tries all three.)
+
+Same for Mario, Benedetta, Giulia, Adelaide when you have them.
+
+---
+
 ## 1. Photos to drop in GitHub → assets
 
 Team (square crop, face large):
 
-- `assets/team/mario-mariani.jpg`
-- `assets/team/livio-quintavalle.jpg`
-- `assets/team/benedetta-mariani.jpg`
-- `assets/team/giulia-onano.jpg`
-- `assets/team/maria-adelaide-lai.jpg`
+- `assets/team/mario_mariani.jpg`
+- `assets/team/livio_quintavalle.jpg`  ← portrait received in chat, waiting on upload
+- `assets/team/benedetta_mariani.jpg`
+- `assets/team/giulia_onano.jpg`
+- `assets/team/maria_adelaide_lai.jpg`
 
 Building / coworking (from thenetvalue.com is fine):
 
@@ -40,7 +54,7 @@ Replace placeholders later, same filenames:
 ## 2. Facts only you know
 
 **Open innovation**
-- Second example besides BIOS? Name, industry partner, what the startup did, did it reach PoC / contract / nothing.
+- Second example besides BIOS? (Growens / Cagliari Innovation Lab is already on the page from the CV.) Any other we can name?
 - Can we name Eni Joule, Versalis, Digital Uniforms, Alkelux, Kerline, BeNewtral, Lebiu on the site as we have them now?
 
 **Startup**
@@ -61,7 +75,7 @@ Replace placeholders later, same filenames:
 
 **Academy**
 - Current course names and next dates.
-- Is “300 studenti / 50+ aziende” still true?
+- Is “400+ studenti” the number to print (from the CV) or still 300 / 50+ aziende?
 
 **Coworking**
 - Prices still 180 / 250 / from 600 + IVA?
@@ -85,7 +99,7 @@ Replace placeholders later, same filenames:
 
 ---
 
-## 4. How to answer tomorrow
+## 4. How to answer
 
 Reply in the thread with numbered answers. Example:
 

@@ -205,6 +205,9 @@ input, textarea, select {
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; margin-bottom: 28px; }
 .footer-grid a { display: block; text-decoration: none; margin: 6px 0; }
 .footer-grid strong { display: block; color: var(--ink); margin-bottom: 8px; font-family: var(--font); }
+.footer-legal { padding-top: 20px; border-top: 1px solid var(--rule); font-size: 0.8rem; line-height: 1.7; }
+.footer-legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.footer-legal a:hover { color: var(--accent); }
 
 @media (max-width: 1040px) {
   .doors { grid-template-columns: repeat(3, minmax(0, 1fr)); }

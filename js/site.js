@@ -30,6 +30,14 @@ function currentFile() {
   return p === "" ? "index.html" : p;
 }
 
+function photoKey(src) {
+  return (src || "")
+    .split("/")
+    .pop()
+    .replace(/\.(jpe?g|png|webp)$/i, "")
+    .replace(/_/g, "-");
+}
+
 function teamCandidates(src) {
   const raw = (src || "").replace(/^assets\/team\//, "").replace(/\.(jpg|jpeg|png)$/i, "");
   const under = raw.replace(/-/g, "_");
@@ -76,6 +84,16 @@ function mountVisual() {
 }
 
 function loadFirst(el, urls, alt) {
+  const key = photoKey(urls[0] || el.getAttribute("data-photo") || "");
+  const embedded = (window.TNV_TEAM_PHOTOS || {})[key];
+  if (embedded) {
+    const img = new Image();
+    img.alt = alt || "";
+    img.src = embedded;
+    el.innerHTML = "";
+    el.appendChild(img);
+    return;
+  }
   const tryNext = (i) => {
     if (i >= urls.length) return;
     const img = new Image();
@@ -85,7 +103,7 @@ function loadFirst(el, urls, alt) {
       el.appendChild(img);
     };
     img.onerror = () => tryNext(i + 1);
-    img.src = urls[i] + "?v=portraits2";
+    img.src = urls[i] + "?v=portraits3";
   };
   tryNext(0);
 }

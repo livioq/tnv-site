@@ -134,7 +134,7 @@ section { padding: 72px 0; }
 }
 .person-photo {
   aspect-ratio: 1;
-  background: #161616;
+  background: var(--paper);
   border: 1px solid var(--rule);
   margin-bottom: 14px;
   display: grid;

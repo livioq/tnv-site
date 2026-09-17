@@ -1,65 +1,51 @@
-name: Ingest incoming assets
+name: Ingest assets
+
 on:
   push:
-    branches: [main]
     paths:
       - "incoming/**"
   workflow_dispatch:
+
 permissions:
   contents: write
+
 concurrency:
-  group: ingest-assets
+  group: ingest-assets-${{ github.ref }}
   cancel-in-progress: false
+
 jobs:
   ingest:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Decode or fetch incoming files
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install Pillow
+        run: pip install --quiet Pillow
+
+      - name: Ingest pointer files
+        id: ingest
+        run: python3 .github/scripts/ingest_assets.py
+
+      - name: Commit ingested assets
+        if: steps.ingest.outputs.changed == 'true'
         run: |
-          set -uo pipefail
-          shopt -s globstar nullglob
-          count=0
-          for f in incoming/**; do
-            [[ -f "$f" ]] || continue
-            base="${f#incoming/}"
-            case "$base" in
-              README.md|.gitkeep) continue ;;
-            esac
-            if [[ "$f" == *.url ]]; then
-              dest="assets/${base%.url}"
-              url="$(tr -d '\r' < "$f" | sed '/^[[:space:]]*$/d; /^#/d' | head -1)"
-              mkdir -p "$(dirname "$dest")"
-              if curl -fsSL "$url" -o "$dest"; then
-                rm -f "$f"
-                echo "fetched $url -> $dest"
-                count=$((count+1))
-              else
-                echo "WARN fetch failed $url"
-              fi
-            elif [[ "$f" == *.b64 ]]; then
-              dest="assets/${base%.b64}"
-              mkdir -p "$(dirname "$dest")"
-              if python3 -c "import base64,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=pathlib.Path(sys.argv[2]); raw=''.join(p.read_text().split()); pad=(-len(raw))%4; raw+= '='*pad; d.write_bytes(base64.b64decode(raw))" "$f" "$dest"; then
-                rm -f "$f"
-                echo "decoded $f -> $dest"
-                count=$((count+1))
-              else
-                echo "WARN decode failed $f"
-                rm -f "$dest"
-              fi
-            else
-              echo "skip $f (use .url or .b64)"
-            fi
-          done
-          echo "INGESTED=$count" >> "$GITHUB_ENV"
-      - name: Commit ingested binaries
-        if: env.INGESTED != '0'
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A assets incoming
+          git commit -m "Ingest assets from incoming/"
+          git push origin "HEAD:${{ github.ref_name }}"
+
+      - name: Fail the run if any pointer could not be ingested
+        if: steps.ingest.outputs.failed == 'true'
         run: |
-          git config user.name "tnv-assets-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets incoming
-          git diff --cached --quiet && exit 0
-          git commit -m "Ingest incoming assets"
-          git push
+          echo "::error::One or more incoming/ pointer files failed verification and were left in place. See the warnings above for why."
+          exit 1

@@ -8,27 +8,29 @@ Photos go in `assets/` (and `assets/team/`) with the exact names below. If the f
 
 ## 0. Received this morning
 
-Livio portrait is in the chat (black background, square). I cannot push JPG/PNG through the GitHub text API. Please upload the file yourself:
+Team portraits ingested (17 Sep):
 
-GitHub → `livioq/tnv-site` → Add file → Upload → save as:
+- `assets/team/mario_mariani.jpeg`
+- `assets/team/livio_quintavalle.jpeg`
+- `assets/team/benedetta_mariani.jpeg`
+- `assets/team/giulia_onano.jpeg`
+- `assets/team/maria_adelaide_lai.jpeg`
 
-`assets/team/livio_quintavalle.jpeg`
+Ingest workflow was failing on Mario’s `.b64` (extra padding). Decoder is now Python-tolerant; all five JPEGs are in `assets/team/`.
 
-(or `.jpg` / `.png` — the site tries all three.)
-
-Same for Mario, Benedetta, Giulia, Adelaide when you have them.
+Hard-refresh Chi siamo / home if you still see initials.
 
 ---
 
 ## 1. Photos to drop in GitHub → assets
 
-Team (square crop, face large):
+Team (done, JPEG):
 
-- `assets/team/mario_mariani.jpg`
-- `assets/team/livio_quintavalle.jpg`  ← portrait received in chat, waiting on upload
-- `assets/team/benedetta_mariani.jpg`
-- `assets/team/giulia_onano.jpg`
-- `assets/team/maria_adelaide_lai.jpg`
+- `assets/team/mario_mariani.jpeg`
+- `assets/team/livio_quintavalle.jpeg`
+- `assets/team/benedetta_mariani.jpeg`
+- `assets/team/giulia_onano.jpeg`
+- `assets/team/maria_adelaide_lai.jpeg`
 
 Building / coworking (from thenetvalue.com is fine):
 

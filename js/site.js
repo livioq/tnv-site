@@ -1,7 +1,7 @@
 const pages = [
   ["startup.html", "Startup"],
   ["aziende.html", "Aziende"],
-  ["coworking.html", "Coworking"],
+  ["community.html", "Community"],
   ["open-innovation.html", "Open innovation"],
   ["consulenza-ai.html", "Consulenza AI"],
   ["eventi.html", "Eventi"],
@@ -19,7 +19,7 @@ const visuals = {
   "academy.html": ["assets/startup-map.svg", "Mestiere in uscita"],
   "agency.html": ["assets/poc-collage.jpg", "Candidati e processo"],
   "onshoring.html": ["assets/sardinia-collage.jpg", "Sede, visto, casa, fondi"],
-  "connessioni.html": ["assets/poc-collage.jpg", "Rete della community"],
+  "community.html": ["assets/coworking-facade.jpg", "Viale La Plaia 15, Cagliari"],
   "chi-siamo.html": ["assets/sardinia-collage.jpg", "Dal 2009 a Cagliari"],
   "contatti.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
 };
@@ -124,7 +124,7 @@ function mount() {
     header.querySelector(".menu-toggle").addEventListener("click", () => header.querySelector("nav.primary").classList.toggle("open"));
   }
   if (footer) {
-    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, 09123 Cagliari<br>+39 070 23 30 200</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="coworking.html">Coworking</a><a href="onshoring.html">Onshoring</a></div><div><strong>Ancora</strong><a href="open-innovation.html">Open innovation</a><a href="connessioni.html">Connessioni</a><a href="agency.html">Agency</a><a href="academy.html">Academy</a><a href="consulenza-ai.html">Consulenza AI</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a><a href="chi-siamo.html">Chi siamo</a></div></div><div class="wrap footer-legal">© ${new Date().getFullYear()} The Net Value – Tutti i diritti riservati – <a href="https://thenetvalue.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> – <a href="https://www.iubenda.com/privacy-policy/87409195/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a> – <a href="https://thenetvalue.com/condizioni-generali-tnv-academy/" target="_blank" rel="noopener">Condizioni Generali TNV Academy</a> – P. IVA/VAT 03219010927</div>`;
+    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, 09123 Cagliari<br>+39 070 23 30 200</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="open-innovation.html">Open innovation</a><a href="consulenza-ai.html">Consulenza AI</a><a href="onshoring.html">Onshoring</a><a href="agency.html">Agency</a><a href="academy.html">Academy</a></div><div><strong>Community</strong><a href="community.html">La rete</a><a href="eventi.html">Eventi</a><a href="coworking.html">Coworking e uffici</a><a href="blog.html">Blog</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a><a href="chi-siamo.html">Chi siamo</a></div></div><div class="wrap footer-legal">© ${new Date().getFullYear()} The Net Value – Tutti i diritti riservati – <a href="https://thenetvalue.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> – <a href="https://www.iubenda.com/privacy-policy/87409195/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a> – <a href="https://thenetvalue.com/condizioni-generali-tnv-academy/" target="_blank" rel="noopener">Condizioni Generali TNV Academy</a> – P. IVA/VAT 03219010927</div>`;
   }
   mountVisual();
   mountPhotos();

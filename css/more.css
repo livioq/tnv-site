@@ -238,3 +238,14 @@ input, textarea, select {
 }
 
 .partner-logo{height:42px;width:auto;margin:0 0 14px;}
+
+/* Logo wall: partner and community logos (community.html, consulenza-ai.html) */
+.logo-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.logo-wall figure { background: var(--white); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 20px 18px 14px; display: grid; grid-template-rows: 64px auto; gap: 10px; align-items: center; justify-items: center; }
+.logo-wall img { max-height: 48px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+.logo-wall figcaption { font-size: .78rem; color: var(--muted); text-align: center; }
+.logo-wall .on-ink { background: var(--ink); padding: 8px 12px; }
+.row-links { margin-top: 10px; display: flex; gap: 18px; flex-wrap: wrap; }
+.row-links a { color: var(--accent); text-decoration: none; font-size: .9rem; }
+.row-links a:hover, .card a.more:hover { text-decoration: underline; text-underline-offset: 3px; }
+.note { font-size: .88rem; color: var(--muted); margin-top: 18px; max-width: 70ch; }

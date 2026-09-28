@@ -273,7 +273,7 @@ input, textarea, select {
 .story-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 44px 0; border-bottom: 1px solid var(--rule); }
 .story-block:nth-child(even) figure { order: 2; }
 .story-block figure { margin: 0; }
-.story-block img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.story-block img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--white); border: 1px solid var(--rule); }
 .story-block h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); margin: 6px 0 12px; }
 .story-block p { color: var(--ink-soft); max-width: 58ch; }
 .story-block p + p { margin-top: 10px; }
@@ -325,20 +325,12 @@ input, textarea, select {
   .sub a { padding: 10px 0; white-space: normal; }
 }
 
-/* Home: services for companies */
-.svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; margin-top: 8px; }
-.svc { display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; }
-.svc img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border: 1px solid var(--rule); background: var(--white); }
-.svc h3 { font-size: 1.25rem; margin-top: 6px; }
-.svc p { color: var(--ink-soft); margin: 0; }
-.svc .row-links { margin-top: 0; }
-@media (max-width: 860px) { .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) {
-  .svc-grid { grid-template-columns: 1fr; gap: 20px; }
-  .svc { grid-template-columns: 104px 1fr; grid-template-rows: auto; column-gap: 14px; row-gap: 4px; align-items: start; }
-  .svc img { grid-row: 1 / span 3; aspect-ratio: 1 / 1; }
-  .svc h3 { margin-top: 0; font-size: 1.1rem; }
-}
+/* Home: the six company services continue the 01–02 story blocks (same size) */
+.story-blocks-cont { margin-top: 8px; }
+/* continue the left/right alternation after block 02 (image right): 03 image left, 04 right, ... */
+.story-blocks-cont .story-block:nth-child(even) figure { order: 2; }
+.story-blocks-cont .story-block:nth-child(odd) figure { order: 0; }
+@media (max-width: 860px) { .story-blocks-cont .story-block:nth-child(even) figure { order: 0; } }
 
 /* Community: event list */
 .event-list { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--ink); }

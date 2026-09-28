@@ -28,3 +28,8 @@ Source: live site https://thenetvalue.com/academy/, block "La TNV Academy è sup
 | Pluribus One (white logo, shown on ink tile) | /wp-content/uploads/2024/08/logo_pluribus_one_pos@4x.png | `assets/partner-pluribus-one.png` |
 | Quantyx | /wp-content/uploads/2024/07/6.png | reuses existing `assets/network/quantyx.png` |
 | Sicuritalia | /wp-content/uploads/2025/10/sicuritalia_logo.png | `assets/partner-sicuritalia.png` |
+
+## Local copies of previously hotlinked logos (2026-09-28)
+- partner-sardiamo.png — from static.wixstatic.com (Sardiamo site logo, previously hotlinked in onshoring.html)
+- partner-601-analytics.png — from the 601 Analytics LinkedIn company logo (previously hotlinked; LinkedIn URLs expire)
+- partner-tomato-blue.png — from tomato.blue (_next/static/media/tomatoblue-logo), white logo shown on ink tile

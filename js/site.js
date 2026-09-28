@@ -8,7 +8,7 @@ const pages = [
 ];
 
 const visuals = {
-  "index.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15, Cagliari"],
+  "index.html": ["assets/sardinia-collage.jpg", "Cagliari e la Sardegna"],
   "aziende.html": ["assets/poc-collage.jpg", "Persone, processo, territorio"],
   "coworking.html": ["assets/sardinia-collage.jpg", "Viale La Plaia 15"],
   "open-innovation.html": ["assets/poc-collage.jpg", "Vuoto, matching, ingresso"],
@@ -75,9 +75,15 @@ function mountVisual() {
   const [src, cap] = spec;
   const existing = document.querySelector(".visual-frame img");
   if (existing) {
+    const capEl = existing.parentElement.querySelector("figcaption");
+    // Same image as authored: keep the page's own alt text and caption.
+    if (existing.getAttribute("src") === src) {
+      if (!existing.getAttribute("alt")) existing.alt = cap;
+      if (capEl && !capEl.textContent.trim()) capEl.textContent = cap;
+      return;
+    }
     existing.src = src;
     existing.alt = cap;
-    const capEl = existing.parentElement.querySelector("figcaption");
     if (capEl) capEl.textContent = cap;
   }
 }
@@ -119,11 +125,14 @@ function mount() {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
   if (header) {
-    header.innerHTML = `<div class="wrap header-inner"><a class="logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><button class="menu-toggle" type="button" aria-label="Menu">Menu</button><nav class="primary">${pages.map(([href,label])=>`<a href="${href}" ${href===file?'aria-current="page"':''}>${label}</a>`).join("")}<a class="btn" href="contatti.html">Primo incontro</a></nav></div>`;
-    header.querySelector(".menu-toggle").addEventListener("click", () => header.querySelector("nav.primary").classList.toggle("open"));
+    header.innerHTML = `<div class="wrap header-inner"><a class="logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><button class="menu-toggle" type="button" aria-label="Apri il menu" aria-controls="primary-nav" aria-expanded="false">Menu</button><nav class="primary" id="primary-nav">${pages.map(([href,label])=>`<a href="${href}" ${href===file?'aria-current="page"':''}>${label}</a>`).join("")}<a class="btn" href="contatti.html">Primo incontro</a></nav></div>`;
+    const toggle = header.querySelector(".menu-toggle"), nav = header.querySelector("nav.primary");
+    const setMenu = (open) => { nav.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); toggle.setAttribute("aria-label", open ? "Chiudi il menu" : "Apri il menu"); };
+    toggle.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); toggle.focus(); } });
   }
   if (footer) {
-    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, 09123 Cagliari<br>+39 070 23 30 200</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="open-innovation.html">Open innovation</a><a href="consulenza-ai.html">Consulenza AI</a><a href="onshoring.html">Onshoring</a><a href="agency.html">Agency</a><a href="academy.html">Academy</a></div><div><strong>Community</strong><a href="community.html">La rete</a><a href="eventi.html">Eventi</a><a href="coworking.html">Coworking e uffici</a><a href="blog.html">Blog</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a><a href="chi-siamo.html">Chi siamo</a></div></div><div class="wrap footer-legal">© ${new Date().getFullYear()} The Net Value – Tutti i diritti riservati – <a href="https://thenetvalue.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> – <a href="https://www.iubenda.com/privacy-policy/87409195/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a> – <a href="https://thenetvalue.com/condizioni-generali-tnv-academy/" target="_blank" rel="noopener">Condizioni Generali TNV Academy</a> – P. IVA/VAT 03219010927</div>`;
+    footer.innerHTML = `<div class="wrap footer-grid"><div><a class="logo footer-logo" href="index.html"><img src="assets/logo_tnv_dark_2019.png" alt="The Net Value"></a><br>Viale La Plaia 15, 09123 Cagliari<br>+39 070 23 30 200</div><div><strong>Offerte</strong><a href="startup.html">Startup</a><a href="aziende.html">Aziende</a><a href="open-innovation.html">Open innovation</a><a href="consulenza-ai.html">Consulenza AI</a><a href="onshoring.html">Onshoring</a><a href="agency.html">Agency</a><a href="academy.html">Academy</a></div><div><strong>Community</strong><a href="community.html">La community</a><a href="eventi.html">Eventi</a><a href="coworking.html">Coworking e uffici</a><a href="blog.html">Blog</a></div><div><strong>Contatti</strong><a href="mailto:info@thenetvalue.com">info@thenetvalue.com</a><a href="chi-siamo.html">Chi siamo</a></div></div><div class="wrap footer-legal">© ${new Date().getFullYear()} The Net Value – Tutti i diritti riservati – <a href="https://thenetvalue.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> – <a href="https://www.iubenda.com/privacy-policy/87409195/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a> – <a href="https://thenetvalue.com/condizioni-generali-tnv-academy/" target="_blank" rel="noopener">Condizioni Generali TNV Academy</a> – P. IVA/VAT 03219010927</div>`;
   }
   mountVisual();
   mountPhotos();

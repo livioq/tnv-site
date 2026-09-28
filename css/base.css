@@ -10,6 +10,15 @@
   --good: #2f6f4e;
   --muted: #5c635e;
   --max: 1120px;
+  /* Design system: two section tones (paper default, .dark) and one surface for boxes */
+  --section-bg: var(--paper);
+  --section-pad: 72px;
+  --surface: var(--white);          /* cards, logo tiles, frames, person boxes */
+  --surface-border: var(--rule);
+  --card-pad: 24px;
+  --grid-gap: 18px;
+  --dark-surface: #1a1f1c;
+  --dark-border: #2c3330;
   --font: "Source Serif 4", Georgia, serif;
   --sans: "Outfit", system-ui, sans-serif;
 }
@@ -115,8 +124,8 @@ h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 18ch; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 
 .visual-frame {
-  border: 1px solid var(--rule);
-  background: var(--white);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
   padding: 10px;
 }
 .visual-frame img {

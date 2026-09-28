@@ -1,13 +1,13 @@
 .startup-page .text-link { align-self: center; padding: 10px 4px; color: var(--ink-soft); text-underline-offset: 4px; }
 
-.startup-proof { border: 1px solid var(--rule); background: var(--white); padding: 22px 24px 10px; }
+.startup-proof { border: 1px solid var(--surface-border); background: var(--surface); padding: 22px 24px 10px; }
 .proof-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); margin-bottom: 4px; }
 .proof-number { display: grid; grid-template-columns: minmax(120px,.8fr) 1.2fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--rule); }
 .proof-number:first-of-type { border-top: 0; }
 .proof-number strong { font-family: var(--font); font-size: 1.35rem; line-height: 1.1; }
 .proof-number span { color: var(--muted); font-size: .9rem; }
 
-.startup-path { background: var(--white); }
+/* .startup-path uses the default section background (paper), like every other section */
 
 @media (max-width: 520px) {
   .proof-number { grid-template-columns: 1fr; gap: 5px; }

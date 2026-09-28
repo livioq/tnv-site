@@ -394,3 +394,19 @@ input, textarea, select {
 .logo-wall.compact .text-logo { min-height: 44px; }
 @media (max-width: 480px) { .logo-wall.compact .text-logo { min-height: 36px; font-size: .85rem; } }
 .logo-wall.placeholder-box figure { background: transparent; border: 0; }
+
+/* Fact strips (building in numbers) and timelines — shared, work on paper and .dark */
+.stats.stats-auto { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.stats.stats-auto .stat:last-child { border-right: 0; }
+.dark .stats { border-color: var(--dark-border); }
+.dark .stat { border-color: var(--dark-border); }
+.dark .stat span { color: #c9c3b6; }
+.service-rows.timeline .service-row { grid-template-columns: 132px minmax(200px, .8fr) 1.2fr; }
+.service-rows.timeline .service-index { text-transform: uppercase; }
+@media (max-width: 860px) {
+  .stats.stats-auto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats.stats-auto .stat { border-right: 0; }
+  .stats.stats-auto .stat:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .dark .stats.stats-auto .stat:nth-child(odd) { border-right-color: var(--dark-border); }
+  .service-rows.timeline .service-row { grid-template-columns: 1fr; }
+}
